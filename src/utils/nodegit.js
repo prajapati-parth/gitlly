@@ -1,10 +1,9 @@
 import nodegit from 'nodegit'
 
 export default {
-  openRepo(dirPath) {
-    nodegit.Repository.open(dirPath)
-      .then((repo) => {
-        return repo
-      })
+  async getStatus(dirPath) {
+    let repo = await nodegit.Repository.open(dirPath)
+      
+    return await repo.getStatus()
   }
 }

@@ -1,18 +1,34 @@
 import React from 'react'
+import {remote} from 'electron'
 
-import DirectorySelectButton from './directorySelectButton'
+import dirIcon from '../../assets/icons/dir.svg'
 import './header.less'
-import Git from '../../utils/nodegit'
 
-const Header = () => {
+const Header = (props) => {
   const handleDirSelect = (path) => {
-    console.log(Git.openRepo(path))
+    Git.getStatus(path).then(status => {
+      
+    })
+  }
+
+  const buttonClick = () => {
+    let openDialogOptions = {
+      properties: ['openDirectory']
+    }
+    remote.dialog.showOpenDialog(remote.getCurrentWindow(), openDialogOptions, (filePaths) => props.directorySelect(filePaths[0]))
   }
 
   return (
-    <div className='header'>
-      <DirectorySelectButton
-        directorySelected={(path) => handleDirSelect(path)} />
+    <div>
+      <div className='header'>
+        <button className='glButton' title='open directory' onClick={() => buttonClick()}>
+          <img src={dirIcon} alt="open dir" />
+        </button>
+      </div>
+
+      <div>
+
+      </div>
     </div>
   )
 }
