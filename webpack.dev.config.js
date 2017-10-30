@@ -1,9 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
+var fs = require('fs');
+var nodeExternals = require('webpack-node-externals');
+
 
 module.exports = {
     entry: './src/index.js',
-    target: 'electron-renderer',
+    target: 'node',
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'src/electron'),
         filename: 'bundle.js',
@@ -16,6 +20,8 @@ module.exports = {
         port: 9000,
         host: 'localhost',
     },
+
+    externals: [nodeExternals()],
 
     module: {
         loaders: [
@@ -36,6 +42,10 @@ module.exports = {
             { 
                 test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
                 loader: 'file-loader?name=fonts/[name].[ext]'
+            },
+            {
+                test: /\.node$/,
+                use: 'node-loader'
             }
         ]
     }
