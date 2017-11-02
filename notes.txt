@@ -1,1 +1,5 @@
 icon pack : https://dribbble.com/shots/2888226-1800-Free-Minimal-Icon-Pack-20x20
+
+design ideas:
+1) https://dribbble.com/shots/2359374-Mail-client-app
+2) https://dribbble.com/shots/2679552-Web-Message-Interface

@@ -1,5 +1,6 @@
 import React from 'react'
 import {remote} from 'electron'
+import { Link } from 'react-router-dom'
 
 import dirIcon from '../../assets/icons/dir.svg'
 import './header.less'
@@ -23,6 +24,14 @@ const Header = (props) => {
       <div className='header'>
         <button className='glButton' title='open directory' onClick={() => buttonClick()}>
           <img src={dirIcon} alt="open dir" />
+        </button>
+
+        <button className='glButton'>
+          <Link to='/home'>Go Home</Link>
+        </button>
+
+        <button className='glButton'>
+          <Link to='/dir-view'>Go Dir view</Link>
         </button>
       </div>
 

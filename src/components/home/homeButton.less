@@ -1,0 +1,22 @@
+@import '../../utils/app-theme.less';
+
+.homeButton {
+  &Container {
+    height: 100%;
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: @white-base;
+    min-width: 280px;
+    &:hover {
+      background-color: @primary-color;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: background-color 2s;
+    }
+  }
+  &Content {
+    font-weight: 600;
+  }
+}
