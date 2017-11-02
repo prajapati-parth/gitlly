@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import Store from 'electron-store'
 
-import HomeContainer from './home/homeContainer'
+import HomeContainer from './home/home-container'
+import DirectoryViewContainer from './directory-view/directory-view-container'
 
 const store = new Store()
 
 const App = () => {
+  const unicornDirectory = store.get('unicornDirectory')
   return (
-    store.get('unicornDirectory') ? <span>Directory View Comming soon</span> : <HomeContainer />
+    unicornDirectory ? <DirectoryViewContainer unicornDirectory={unicornDirectory} /> : <HomeContainer />
   )
 }
 

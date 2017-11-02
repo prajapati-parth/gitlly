@@ -11,12 +11,19 @@
     min-width: 280px;
     &:hover {
       background-color: @primary-color;
-      color: #FFFFFF;
+      color: @white;
       cursor: pointer;
-      transition: background-color 2s;
+      transition: background-color 0.5s;
+      svg {
+        fill: @white;
+      }
     }
   }
   &Content {
     font-weight: 600;
+    font-size: 18px;
+  }
+  &Icon {
+    margin-right: 7px;
   }
 }
