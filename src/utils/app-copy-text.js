@@ -1,5 +1,5 @@
 export default {
-  headerBrandButtonText: 'GITLLY',
+  headerBrandButtonText: 'Gitlly',
   homeNewRepoButtonText: 'Create New repository',
   homeOpenRepoButtonText: 'Add a Local repository',
   homeCloneRepoButtonText: 'Clone a repository'

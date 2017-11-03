@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import Store from 'electron-store'
 
 import BrandButton from './brand-button'
 import './header-container.less'
 
-const store = new Store()
+import StoreHelper from '../../utils/store-helper'
 
 class HeaderContainer extends Component {
   constructor() {
@@ -22,7 +21,7 @@ class HeaderContainer extends Component {
 
   _handleBrandButtonClick() {
     console.log('clearing store')
-    store.set('unicornDirectory', '')
+    StoreHelper.setValue('unicornDirectory', '')
   }
 }
 

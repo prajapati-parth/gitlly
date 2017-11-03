@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { remote } from 'electron'
-import Store from 'electron-store'
 
 import HomeButton from './home-button'
 import './home-container.less'
-import AppCopy from '../../utils/app-copy-text'
 
-const store = new Store()
+import AppCopy from '../../utils/app-copy-text'
+import StoreHelper from '../../utils/store-helper'
 
 class HomeContainer extends Component {
   constructor() {
@@ -47,7 +46,13 @@ class HomeContainer extends Component {
 
   directorySelected(dirpath) {
     // set opened directory in store so that it can be opened again on app relaunch
-    store.set('unicornDirectory', dirpath)
+    StoreHelper.setValue('unicornDirectory', dirpath)
+
+    // add to open directories
+    StoreHelper.addOpenDirectory(dirpath)
+
+    // call props method to change view to directory-view
+    this.props.directorySelected(dirpath)
   }
 }
 

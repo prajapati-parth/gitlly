@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import FileStatusListView from './file-status-list-view'
 import HeaderContainer from '../header/header-container'
+import Sidebar from '../sidebar/sidebar-container'
 import Git from '../../utils/nodegit'
 import GitHelper from '../../utils/nodegit-helper'
 
@@ -17,8 +18,13 @@ class DirectoryViewContainer extends Component {
   render() {
     return (
       <div>
-        <HeaderContainer />
-        <FileStatusListView fileList={this.state.directoryStatus} />
+        <div>
+          <HeaderContainer />
+        </div>
+        <div>
+          <Sidebar />
+          <FileStatusListView fileList={this.state.directoryStatus} />
+        </div>
       </div>
     )
   }
