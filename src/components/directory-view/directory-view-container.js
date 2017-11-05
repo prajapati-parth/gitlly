@@ -6,6 +6,8 @@ import Sidebar from '../sidebar/sidebar-container'
 import Git from '../../utils/nodegit'
 import GitHelper from '../../utils/nodegit-helper'
 
+import './directory-view-container.less'
+
 class DirectoryViewContainer extends Component {
   constructor(props) {
     super(props)
@@ -17,11 +19,11 @@ class DirectoryViewContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className='directoryViewContainer'>
         <div>
           <HeaderContainer />
         </div>
-        <div>
+        <div className='bodyContainer'>
           <Sidebar />
           <FileStatusListView fileList={this.state.directoryStatus} />
         </div>
