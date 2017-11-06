@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { remote, shell } from 'electron'
+import { connect } from 'react-redux'
 
 import DirectoryList from './directory-list'
-import StoreHelper from '../../utils/store-helper'
+
+import * as Selectors from '../../store/reducers/directory-view'
+import * as DirViewActions from '../../store/actions/directory-view'
 
 const { Menu, MenuItem } = remote
 
@@ -14,10 +17,9 @@ class DirectoryListContainer extends Component {
   }
 
   render() {
-    const dirs = StoreHelper.getValue('openDirList')
     return (
       <DirectoryList
-        dirs={dirs}
+        dirs={this.props.openDirectoryList}
         listItemClicked={this.handleListItemClicked} />
     )
   }
@@ -42,7 +44,10 @@ class DirectoryListContainer extends Component {
 
   _removeRepofromDirList(dirPath) {
     // remove from opened directories list
-    StoreHelper.removeFromOpenDirectory(dirPath)
+    // StoreHelper.removeFromOpenDirectory(dirPath)
+    this.props.dispatch(
+      DirViewActions.removeFromOpenDirectoryList(dirPath)
+    )
   }
 
   _openRepoDirectory(dirPath) {
@@ -50,4 +55,10 @@ class DirectoryListContainer extends Component {
   }
 }
 
-export default DirectoryListContainer
+function mapStateToProps(state) {
+  return {
+    openDirectoryList: Selectors.getOpenDirectoryList(state)
+  }
+}
+
+export default connect(mapStateToProps)(DirectoryListContainer)

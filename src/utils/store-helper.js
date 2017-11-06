@@ -19,6 +19,8 @@ export default {
       openDirs.push(dir)
       store.set(openDirListKey, openDirs)
     }
+
+    return openDirs
   },
 
   removeFromOpenDirectory(dir) {
@@ -30,5 +32,7 @@ export default {
       openDirs.splice(dirIndex, 1)
       store.set(openDirListKey, openDirs)
     }
+
+    return openDirs
   }
 }

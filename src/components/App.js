@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import HomeContainer from './home/home-container'
 import DirectoryViewContainer from './directory-view/directory-view-container'
-import StoreHelper from '../utils/store-helper'
 
 import * as Selectors from '../store/reducers/directory-view'
 import * as DirViewActions from '../store/actions/directory-view'
@@ -17,7 +16,7 @@ class App extends Component {
 
   render() {
     return (
-      this.props.unicornDirectory
+      this.props.openDirList.length
         ? <DirectoryViewContainer unicornDirectory={this.props.unicornDirectory} />
         : <HomeContainer directorySelected={this.handleDirectorySelect} />
     ) 
@@ -27,12 +26,17 @@ class App extends Component {
     this.props.dispatch(
       DirViewActions.updateUnicornDirectory(dirPath)
     )
+
+    this.props.dispatch(
+      DirViewActions.addToOpenDirectoryList(dirPath)
+    )
   }
 }
 
 function mapStatetoProps(state) {
   return {
-    unicornDirectory: Selectors.getUnicornDirectory(state)
+    unicornDirectory: Selectors.getUnicornDirectory(state),
+    openDirList: Selectors.getOpenDirectoryList(state)
   }
 }
 
