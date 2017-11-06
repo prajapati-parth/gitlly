@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { remote } from 'electron'
+import { remote, shell } from 'electron'
 
 import DirectoryList from './directory-list'
 import StoreHelper from '../../utils/store-helper'
@@ -22,15 +22,31 @@ class DirectoryListContainer extends Component {
     )
   }
 
-  _handleListItemClicked(repoName) {
+  _handleListItemClicked(repoDir) {
     const menu = new Menu()
     menu.append(new MenuItem(
       {
-        label: 'Remove repo from list',
-        click: () => { console.log('remove repo clicked') }
+        label: 'Open Containing Folder',
+        click: () => { this._openRepoDirectory(repoDir) }
+      }
+    ))
+    menu.append(new MenuItem({type: 'separator'}))
+    menu.append(new MenuItem(
+      {
+        label: 'Remove Repository from List',
+        click: () => { this._removeRepofromDirList(repoDir) }
       }
     ))
     menu.popup(remote.getCurrentWindow())
+  }
+
+  _removeRepofromDirList(dirPath) {
+    // remove from opened directories list
+    StoreHelper.removeFromOpenDirectory(dirPath)
+  }
+
+  _openRepoDirectory(dirPath) {
+    shell.openItem(dirPath)
   }
 }
 

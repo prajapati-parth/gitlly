@@ -22,6 +22,7 @@ class HeaderContainer extends Component {
   _handleBrandButtonClick() {
     console.log('clearing store')
     StoreHelper.setValue('unicornDirectory', '')
+    StoreHelper.setValue('openDirList', [])
   }
 }
 

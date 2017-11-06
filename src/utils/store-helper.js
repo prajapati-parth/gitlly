@@ -15,8 +15,20 @@ export default {
     let openDirListKey = 'openDirList',
       openDirs = store.get(openDirListKey) || []
 
-    openDirs.push(dir)
+    if (openDirs.indexOf(dir) === -1) {
+      openDirs.push(dir)
+      store.set(openDirListKey, openDirs)
+    }
+  },
 
-    store.set(openDirListKey, openDirs)
+  removeFromOpenDirectory(dir) {
+    let openDirListKey = 'openDirList',
+      openDirs = store.get(openDirListKey) || [],
+      dirIndex = openDirs.indexOf(dir)
+    
+    if (dirIndex > -1) {
+      openDirs.splice(dirIndex, 1)
+      store.set(openDirListKey, openDirs)
+    }
   }
 }

@@ -12,7 +12,7 @@ const DirectoryList = (props) => {
         props.dirs && props.dirs.map((item, index) => {
           return (
             <div key={index} title={item} className='directoryListItem' onClick={() => props.listItemClicked(item)}>
-              <span className='repoIcon' dangerouslySetInnerHTML={{ __html: Octicons.repo.toSVG({'width': 20, 'height': 20}) }} />
+              <span className='repoIcon' dangerouslySetInnerHTML={{ __html: Octicons.repo.toSVG({'width': 22, 'height': 22}) }} />
               <span>{Utils.getProjectNameFromDirPath(item)}</span>
             </div>
           )
