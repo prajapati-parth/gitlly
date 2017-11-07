@@ -3,15 +3,15 @@
 
 .brandButton {
   color: @white;
-  font-size: 18px;
+  font-size: @brand-button-font-size;
   font-family: 'Varela', sans-serif;  
   &Container {
     float: left;
-    min-width: 250px;
+    min-width: @brand-button-min-width;
     padding: 22px 0;
     background-color: @primary-color;
     text-align: center;
-    box-shadow: 0px 0px 30px 3px @box-shadow-color;
+    // box-shadow: 0px 0px 30px 3px @box-shadow-color;
     &:hover {
       cursor: pointer;
     }

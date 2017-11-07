@@ -1,3 +1,12 @@
+@import '../../utils/app-theme.less';
+
 .headerContainer {
-  height: 67px;
+  height: @header-container-height;
+  display: flex;
+}
+
+.newOptionContainer {
+  width: @new-options-container-min-width;
+  display: flex;
+  border-right: 1px solid @grey-border;
 }

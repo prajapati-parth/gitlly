@@ -6,6 +6,7 @@ import './home-container.less'
 
 import AppCopy from '../../utils/app-copy-text'
 import StoreHelper from '../../utils/store-helper'
+import ElectronHelper from '../../utils/electron-helper'
 
 class HomeContainer extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class HomeContainer extends Component {
     this.handleCreateButtonClick = this._handleCreateButtonClick.bind(this)
     this.handleOpenButtonClick = this._handleOpenButtonClick.bind(this)
     this.handleCloneButtonClick = this._handleCloneButtonClick.bind(this)
+    this.directorySelected = this._directorySelected.bind(this)
   }
 
   render() {
@@ -31,20 +33,14 @@ class HomeContainer extends Component {
   }
 
   _handleOpenButtonClick() {
-    // configure options for opening native dialog to select directory
-    let openDialogOptions = {
-      properties: ['openDirectory']
-    }
-
-    // open native dialog
-    remote.dialog.showOpenDialog(remote.getCurrentWindow(), openDialogOptions, (filePaths) => this.directorySelected(filePaths[0]))
+    ElectronHelper.openSelectDirectoryDialog(this.directorySelected)
   }
 
   _handleCloneButtonClick() {
     console.log('clone repo clicked')
   }
 
-  directorySelected(dirpath) {
+  _directorySelected(dirpath) {
     // call props method to change view to directory-view
     this.props.directorySelected(dirpath)
   }
