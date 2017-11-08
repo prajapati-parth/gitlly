@@ -1,5 +1,8 @@
 import * as ActionTypes from '../action-types/directory-view'
+
 import StoreHelper from '../../utils/store-helper'
+import Git from '../../utils/nodegit'
+import GitHelper from '../../utils/nodegit-helper'
 
 export const updateUnicornDirectory = directory => {
   // set opened directory in store so that it can be opened again on app relaunch
@@ -12,6 +15,36 @@ export const updateUnicornDirectory = directory => {
   return {
     type: ActionTypes.UPDATE_UNICORN_DIRECTORY,
     directory
+  }
+}
+
+export const updateOpenDirectoryFileStatus = directory => {
+  return dispatch => {
+    // TODO: Handle condition when a non-git directory is selected(do a catch block for "then")
+    Git.getStatus(directory).then(statusList => {
+      let fileList = []
+
+      for (let i=0, totalFiles = statusList.length; i<totalFiles; i++) {
+        let fileListObj = {
+          path: statusList[i].path(),
+          gitStatus: GitHelper.getFileStatus(statusList[i])
+        }
+
+        fileList.push(fileListObj)
+      }
+
+      dispatch({
+        type: ActionTypes.UPDATE_DIRECTORY_FILE_STATUS,
+        fileStatusList: fileList
+      })
+    }) 
+  }
+}
+
+export const clearOpenDirectoryFileStatus = () => {
+  return {
+    type: ActionTypes.UPDATE_DIRECTORY_FILE_STATUS,
+    fileStatusList: []
   }
 }
 

@@ -52,8 +52,13 @@ class HeaderContainer extends Component {
   }
 
   _handleDirectorySelect(dir) {
-    this.props.dispatch(
+    const {dispatch} = this.props
+    dispatch(
       DirViewActions.addToOpenDirectoryList(dir)
+    )
+
+    dispatch(
+      DirViewActions.updateOpenDirectoryFileStatus(dir)
     )
   }
 }

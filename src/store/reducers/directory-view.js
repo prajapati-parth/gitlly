@@ -3,7 +3,8 @@ import StoreHelper from '../../utils/store-helper'
 
 const initialState = {
   unicornDirectory: StoreHelper.getValue('unicornDirectory'),
-  openDirectoryList: StoreHelper.getValue('openDirList')
+  openDirectoryList: StoreHelper.getValue('openDirList'),
+  openDirectoryFileStatus: []
 }
 
 export default function reducer(state=initialState, action={}) {
@@ -18,6 +19,11 @@ export default function reducer(state=initialState, action={}) {
         ...state.DirectoryView,
         openDirectoryList: action.dirList
       })
+    case ActionTypes.UPDATE_DIRECTORY_FILE_STATUS:
+      return Object.assign({}, state, {
+        ...state.DirectoryView,
+        openDirectoryFileStatus: action.fileStatusList
+      })
     default:
       return state
   }
@@ -30,4 +36,8 @@ export const getUnicornDirectory = state => {
 
 export const getOpenDirectoryList = state => {
   return state.DirectoryView.openDirectoryList ? state.DirectoryView.openDirectoryList : initialState.openDirectoryList
+}
+
+export const getOpenDirectoryFileStatusList = state => {
+  return state.DirectoryView.openDirectoryFileStatus ? state.DirectoryView.openDirectoryFileStatus : initialState.openDirectoryFileStatus
 }

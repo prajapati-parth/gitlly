@@ -1,4 +1,4 @@
-import { remote } from 'electron'
+import { remote, shell } from 'electron'
 
 export default {
   openSelectDirectoryDialog(callback) {
@@ -9,5 +9,9 @@ export default {
 
     // open native dialog
     remote.dialog.showOpenDialog(remote.getCurrentWindow(), openDialogOptions, (filePaths) => callback(filePaths[0]))
+  },
+
+  openItem(dirPath) {
+    shell.openItem(dirPath)
   }
 }

@@ -1,22 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import FileStatusListView from './file-status-list-view'
 import HeaderContainer from '../header/header-container'
 import Sidebar from '../sidebar/sidebar-container'
-import Git from '../../utils/nodegit'
-import GitHelper from '../../utils/nodegit-helper'
 
 import './directory-view-container.less'
 
+import * as DirectoryViewActions from '../../store/actions/directory-view'
+import * as DirectoryViewSelectors from '../../store/reducers/directory-view'
+
+import Git from '../../utils/nodegit'
+import GitHelper from '../../utils/nodegit-helper'
+
 class DirectoryViewContainer extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      directoryStatus: this.getDirectoryStatus(props.unicornDirectory) || []
-    }
-  }
-
   render() {
     return (
       <div className='directoryViewContainer'>
@@ -25,31 +22,18 @@ class DirectoryViewContainer extends Component {
         </div>
         <div className='bodyContainer'>
           <Sidebar />
-          <FileStatusListView fileList={this.state.directoryStatus} />
+          <FileStatusListView fileList={this.props.fileList} />
         </div>
       </div>
     )
   }
+}
 
-  getDirectoryStatus(dirpath) {
-    // TODO: Handle condition when a non-git directory is selected(do a catch block for "then")
-    Git.getStatus(dirpath).then(statusList => {
-      let fileList = []
-
-      for (let i=0, totalFiles = statusList.length; i<totalFiles; i++) {
-        let fileListObj = {
-          path: statusList[i].path(),
-          gitStatus: GitHelper.getFileStatus(statusList[i])
-        }
-
-        fileList.push(fileListObj)
-      }
-
-      this.setState({
-        directoryStatus: fileList
-      })
-    })
+function mapStateToProps(state) {
+  return {
+    unicornDirectory: DirectoryViewSelectors.getUnicornDirectory(state),
+    fileList: DirectoryViewSelectors.getOpenDirectoryFileStatusList(state)
   }
 }
 
-export default DirectoryViewContainer
+export default connect(mapStateToProps)(DirectoryViewContainer)
