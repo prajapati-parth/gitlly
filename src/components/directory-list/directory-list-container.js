@@ -3,6 +3,7 @@ import { remote } from 'electron'
 import { connect } from 'react-redux'
 
 import DirectoryList from './directory-list'
+import Git from '../../utils/nodegit'
 
 import * as Selectors from '../../store/reducers/directory-view'
 import * as DirViewActions from '../../store/actions/directory-view'
@@ -16,15 +17,20 @@ class DirectoryListContainer extends Component {
     super()
 
     this.state = {
-      modifiedFilesCountList: []
+      modifiedFilesCount: 0
     }
 
     this.handleListItemClicked = this._handleListItemClicked.bind(this)
     this.handleShowContextMenu = this._handleShowContextMenu.bind(this)
+    this.getModifiedFilesCount = this._getModifiedFilesCount.bind(this)
+  }
+
+  componentDidMount() {
+    this._getModifiedFilesCount()
   }
 
   componentWillUpdate() {
-    console.log('hey updating')
+    this._getModifiedFilesCount()
     return true
   }
 
@@ -35,7 +41,8 @@ class DirectoryListContainer extends Component {
         dirs={openDirectoryList}
         listItemClicked={this.handleListItemClicked}
         showContextMenu={this.handleShowContextMenu}
-        selectedDirectory={unicornDirectory} />
+        selectedDirectory={unicornDirectory}
+        modifiedFilesCount={this.state.modifiedFilesCount} />
     )
   }
 
@@ -94,6 +101,14 @@ class DirectoryListContainer extends Component {
         DirViewActions.updateUnicornDirectory(newUnicornDirectory)
       )
     }
+  }
+
+  _getModifiedFilesCount() {
+    Git.getStatus(this.props.unicornDirectory).then(fileList => {
+      this.setState({
+        modifiedFilesCount: fileList.length
+      })
+    })
   }
 }
 

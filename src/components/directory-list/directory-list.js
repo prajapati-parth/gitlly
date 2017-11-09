@@ -17,9 +17,12 @@ const DirectoryList = (props) => {
               className={`directoryListItem ${item === selectedDirectory ? 'unicornDirectory' : ''}`}
               onContextMenu={() => showContextMenu(item)}
               onClick={() => listItemClicked(item)} >
-              {/* <span className='directoryListItemCount'>{modifiedFilesCount}</span> */}
               <Book />
-              <span>{Utils.getProjectNameFromDirPath(item)}</span>
+              <span className='directoryName'>{Utils.getProjectNameFromDirPath(item)}</span>
+              {
+                item === selectedDirectory
+                  && <span className='directoryListItemCount'>{modifiedFilesCount}</span>
+              }
             </div>
           )
         })

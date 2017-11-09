@@ -9,16 +9,23 @@
     font-size: 15px;
     line-height: 2;
     color: @inactive-element-color;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid transparent;
     &:hover {
       cursor: pointer;
       color: @black-base;
     }
     &Count {
-      float: right;
+      margin-left: auto;
       padding-right: 16px;
       font-weight: 600;
     }
   }
+}
+
+.directoryName {
+  margin-left: 7px;
 }
 
 .repoIcon {
@@ -27,6 +34,7 @@
 
 .unicornDirectory {
   color: @black-base;
+  border-color: @primary-color;
   .directoryListItemCount {
     color: @primary-color;
   }
