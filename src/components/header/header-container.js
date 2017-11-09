@@ -27,9 +27,9 @@ class HeaderContainer extends Component {
       <div className='headerContainer'>
         <BrandButton onBrandClick={this.handleBrandButtonClick} />
         <div className="newOptionContainer">
-          <NewOption icon='plus' onOptionClick={this.handleAddRepoClick} />
-          <NewOption icon='file-directory' onOptionClick={this.handleOpenRepoClick} />
-          <NewOption icon='repo' onOptionClick={this.handleCloneRepoClick} />
+          <NewOption icon='Plus' onOptionClick={this.handleAddRepoClick} />
+          <NewOption icon='Folder' onOptionClick={this.handleOpenRepoClick} />
+          <NewOption icon='Book' onOptionClick={this.handleCloneRepoClick} />
         </div>
       </div>
     )

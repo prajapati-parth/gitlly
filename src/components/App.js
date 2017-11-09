@@ -23,12 +23,21 @@ class App extends Component {
   }
 
   _handleDirectorySelect(dirPath) {
-    this.props.dispatch(
+    const {dispatch} = this.props
+
+    // update the current open directory
+    dispatch(
       DirViewActions.updateUnicornDirectory(dirPath)
     )
 
-    this.props.dispatch(
+    // add the selected directory to open directories list
+    dispatch(
       DirViewActions.addToOpenDirectoryList(dirPath)
+    )
+
+    // update the file status list
+    dispatch(
+      DirViewActions.updateOpenDirectoryFileStatus(dirPath)
     )
   }
 }

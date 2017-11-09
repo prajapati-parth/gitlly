@@ -1,9 +1,12 @@
 import { remote, shell } from 'electron'
 
+import AppCopy from './app-copy-text'
+
 export default {
   openSelectDirectoryDialog(callback) {
     // configure options for opening native dialog to select directory
     let openDialogOptions = {
+      title: AppCopy.directorySelectDialogTitle,
       properties: ['openDirectory']
     }
 

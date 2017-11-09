@@ -1,23 +1,24 @@
 import React from 'react'
-import Octicons from 'octicons'
-import '../../../node_modules/octicons/build/build.css'
+import {Book} from 'react-feather'
 
 import './directory-list.less'
 import Utils from '../../utils/utils'
 
 const DirectoryList = (props) => {
+  const {dirs, selectedDirectory, showContextMenu, listItemClicked, modifiedFilesCount} = props
   return (
     <div className='directoryListContainer'>
       {
-        props.dirs && props.dirs.map((item, index) => {
+        dirs && dirs.map((item, index) => {
           return (
             <div
               key={index}
               title={item}
-              className='directoryListItem'
-              onContextMenu={() => props.showContextMenu(item)}
-              onClick={() => props.listItemClicked(item)} >
-              <span className='repoIcon' dangerouslySetInnerHTML={{ __html: Octicons.repo.toSVG({'width': 22, 'height': 22}) }} />
+              className={`directoryListItem ${item === selectedDirectory ? 'unicornDirectory' : ''}`}
+              onContextMenu={() => showContextMenu(item)}
+              onClick={() => listItemClicked(item)} >
+              {/* <span className='directoryListItemCount'>{modifiedFilesCount}</span> */}
+              <Book />
               <span>{Utils.getProjectNameFromDirPath(item)}</span>
             </div>
           )

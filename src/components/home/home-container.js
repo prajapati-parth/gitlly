@@ -21,9 +21,9 @@ class HomeContainer extends Component {
   render() {
     return (
       <div className='homeContainer'>
-        <HomeButton buttonName={AppCopy.homeNewRepoButtonText} iconName='plus' buttonClicked={this.handleCreateButtonClick} />
-        <HomeButton buttonName={AppCopy.homeOpenRepoButtonText} iconName='file-directory' buttonClicked={this.handleOpenButtonClick} />
-        <HomeButton buttonName={AppCopy.homeCloneRepoButtonText} iconName='repo' buttonClicked={this.handleCloneButtonClick} />
+        <HomeButton buttonName={AppCopy.homeNewRepoButtonText} iconName='Plus' buttonClicked={this.handleCreateButtonClick} />
+        <HomeButton buttonName={AppCopy.homeOpenRepoButtonText} iconName='Folder' buttonClicked={this.handleOpenButtonClick} />
+        <HomeButton buttonName={AppCopy.homeCloneRepoButtonText} iconName='Book' buttonClicked={this.handleCloneButtonClick} />
       </div>
     )
   }

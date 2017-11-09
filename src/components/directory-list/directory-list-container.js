@@ -15,16 +15,27 @@ class DirectoryListContainer extends Component {
   constructor() {
     super()
 
+    this.state = {
+      modifiedFilesCountList: []
+    }
+
     this.handleListItemClicked = this._handleListItemClicked.bind(this)
     this.handleShowContextMenu = this._handleShowContextMenu.bind(this)
   }
 
+  componentWillUpdate() {
+    console.log('hey updating')
+    return true
+  }
+
   render() {
+    const {openDirectoryList, unicornDirectory} = this.props
     return (
       <DirectoryList
-        dirs={this.props.openDirectoryList}
+        dirs={openDirectoryList}
         listItemClicked={this.handleListItemClicked}
-        showContextMenu={this.handleShowContextMenu} />
+        showContextMenu={this.handleShowContextMenu}
+        selectedDirectory={unicornDirectory} />
     )
   }
 
@@ -62,7 +73,7 @@ class DirectoryListContainer extends Component {
 
   _removeRepofromDirList(dirPath) {
     const {dispatch, openDirectoryList} = this.props
-    let currentDirIndex = openDirectoryList.indexof(dirPath)
+    let currentDirIndex = openDirectoryList.indexOf(dirPath)
     
     // remove from opened directories list
     dispatch(
@@ -70,7 +81,10 @@ class DirectoryListContainer extends Component {
     )
 
     // change unicornDirectory and openDirectoryFileStatus list
-    let newUnicornDirectory = openDirectoryList[currentDirIndex-1] || openDirectoryList[currentDirIndex]
+    let newUnicornDirectory = currentDirIndex === 0
+      ? openDirectoryList[1]
+      : (openDirectoryList[currentDirIndex-1] || openDirectoryList[currentDirIndex])
+
     if(newUnicornDirectory) {
       dispatch(
         DirViewActions.updateOpenDirectoryFileStatus(newUnicornDirectory)
@@ -85,7 +99,8 @@ class DirectoryListContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    openDirectoryList: Selectors.getOpenDirectoryList(state)
+    openDirectoryList: Selectors.getOpenDirectoryList(state),
+    unicornDirectory: Selectors.getUnicornDirectory(state)
   }
 }
 
