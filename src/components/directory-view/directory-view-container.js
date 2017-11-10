@@ -14,6 +14,11 @@ import Git from '../../utils/nodegit'
 import GitHelper from '../../utils/nodegit-helper'
 
 class DirectoryViewContainer extends Component {
+  // componentWillMount() {
+  //   const {dispatch, unicornDirectory, }
+  //   this.props.unicornDirectory && DirectoryViewActions.updateOpenDirectoryFileStatus()
+  // }
+
   render() {
     return (
       <div className='directoryViewContainer'>

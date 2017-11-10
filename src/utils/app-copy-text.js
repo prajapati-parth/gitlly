@@ -3,5 +3,6 @@ export default {
   homeNewRepoButtonText: 'Create New repository',
   homeOpenRepoButtonText: 'Add a Local repository',
   homeCloneRepoButtonText: 'Clone a repository',
-  directorySelectDialogTitle: 'Select directory'
+  directorySelectDialogTitle: 'Select directory',
+  noChangesDirectoryViewText: 'Everything\'s up-to-date.'
 }
