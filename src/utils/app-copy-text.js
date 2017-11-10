@@ -1,8 +1,8 @@
 export default {
   headerBrandButtonText: 'Gitlly',
-  homeNewRepoButtonText: 'Create New repository',
-  homeOpenRepoButtonText: 'Add a Local repository',
-  homeCloneRepoButtonText: 'Clone a repository',
+  homeNewRepoButtonText: 'Create New Repository',
+  homeOpenRepoButtonText: 'Add a Local Repository',
+  homeCloneRepoButtonText: 'Clone a Repository',
   directorySelectDialogTitle: 'Select directory',
   noChangesDirectoryViewText: 'Everything\'s up-to-date.'
 }

@@ -9,6 +9,7 @@ import * as Selectors from '../../store/reducers/directory-view'
 import * as DirViewActions from '../../store/actions/directory-view'
 
 import ElectronHelper from '../../utils/electron-helper'
+import Utils from '../../utils/utils'
 
 const { Menu, MenuItem } = remote
 
@@ -27,11 +28,6 @@ class DirectoryListContainer extends Component {
 
   componentDidMount() {
     this._getModifiedFilesCount()
-  }
-
-  componentWillUpdate() {
-    this._getModifiedFilesCount()
-    return true
   }
 
   render() {
@@ -79,7 +75,7 @@ class DirectoryListContainer extends Component {
   }
 
   _removeRepofromDirList(dirPath) {
-    const {dispatch, openDirectoryList} = this.props
+    const {dispatch, openDirectoryList, unicornDirectory} = this.props
     let currentDirIndex = openDirectoryList.indexOf(dirPath)
     
     // remove from opened directories list
@@ -87,19 +83,19 @@ class DirectoryListContainer extends Component {
       DirViewActions.removeFromOpenDirectoryList(dirPath)
     )
 
-    // change unicornDirectory and openDirectoryFileStatus list
-    let newUnicornDirectory = currentDirIndex === 0
-      ? openDirectoryList[1]
-      : (openDirectoryList[currentDirIndex-1] || openDirectoryList[currentDirIndex])
+    // update unicornDirectory and openDirectoryFileStatus if unicornDirectory is removed
+    if (dirPath === unicornDirectory) {
+      let newUnicornDirectory = Utils.getNewUnicornDirectory(dirPath, openDirectoryList)
 
-    if(newUnicornDirectory) {
-      dispatch(
-        DirViewActions.updateOpenDirectoryFileStatus(newUnicornDirectory)
-      )
+      if (newUnicornDirectory) {
+        dispatch(
+          DirViewActions.updateOpenDirectoryFileStatus(newUnicornDirectory)
+        )
 
-      dispatch(
-        DirViewActions.updateUnicornDirectory(newUnicornDirectory)
-      )
+        dispatch(
+          DirViewActions.updateUnicornDirectory(newUnicornDirectory)
+        )
+      }
     }
   }
 

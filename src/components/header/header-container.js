@@ -58,6 +58,10 @@ class HeaderContainer extends Component {
     )
 
     dispatch(
+      DirViewActions.updateUnicornDirectory(dir)
+    )
+
+    dispatch(
       DirViewActions.updateOpenDirectoryFileStatus(dir)
     )
   }

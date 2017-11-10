@@ -10,6 +10,7 @@ export default {
     } catch(e) {
       console.log('Error occured while opening repo' + e)
     } finally {
+      console.log('repo free')
       // failing to close the repo will result in excessive memory consumption
       repo.free()
     }
