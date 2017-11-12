@@ -13,7 +13,11 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 850, height: 600})
+  mainWindow = new BrowserWindow({
+    width: 850,
+    height: 600,
+    title: 'Gitlly'
+  })
 
   // and load the index.html of the app.
 //   mainWindow.loadURL(url.format({

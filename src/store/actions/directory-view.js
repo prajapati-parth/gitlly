@@ -66,3 +66,25 @@ export const removeFromOpenDirectoryList = directory => {
     dirList: updatedDirList
   }
 }
+
+export const updateModifiedFilesCount = directory => {
+  return dispatch => {
+    Git.getStatus(directory).then(statusList => {
+      dispatch({
+        type: ActionTypes.UPDATE_MODIFIED_FILES_COUNT,
+        fileCount: statusList.length
+      })
+    })
+  }
+}
+
+export const updateBranchName = directory => {
+  return dispatch => {
+    Git.getBranch(directory).then(branchName => {
+      dispatch({
+        type: ActionTypes.UPDATE_BRANCH_NAME,
+        branchName: GitHelper.getBranchShortName(branchName.toString())
+      })
+    })
+  }
+}

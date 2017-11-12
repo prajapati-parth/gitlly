@@ -6,7 +6,7 @@ import './brand-button.less'
 const BrandButton = (props) => {
   return (
     <div className='brandButtonContainer'>
-      <div className='brandButton' onClick={() => props.onBrandClick()}>{AppCopy.headerBrandButtonText}</div>
+      <div className='brandButton'>{AppCopy.headerBrandButtonText}</div>
     </div>
   )
 }

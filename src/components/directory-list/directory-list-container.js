@@ -17,28 +17,27 @@ class DirectoryListContainer extends Component {
   constructor() {
     super()
 
-    this.state = {
-      modifiedFilesCount: 0
-    }
-
     this.handleListItemClicked = this._handleListItemClicked.bind(this)
     this.handleShowContextMenu = this._handleShowContextMenu.bind(this)
-    this.getModifiedFilesCount = this._getModifiedFilesCount.bind(this)
   }
 
   componentDidMount() {
-    this._getModifiedFilesCount()
+    const {dispatch, unicornDirectory} = this.props
+
+    dispatch(
+      DirViewActions.updateModifiedFilesCount(unicornDirectory)
+    )
   }
 
   render() {
-    const {openDirectoryList, unicornDirectory} = this.props
+    const {openDirectoryList, unicornDirectory, modifiedFilesCount} = this.props
     return (
       <DirectoryList
         dirs={openDirectoryList}
         listItemClicked={this.handleListItemClicked}
         showContextMenu={this.handleShowContextMenu}
         selectedDirectory={unicornDirectory}
-        modifiedFilesCount={this.state.modifiedFilesCount} />
+        modifiedFilesCount={modifiedFilesCount} />
     )
   }
 
@@ -53,6 +52,16 @@ class DirectoryListContainer extends Component {
     // update open directory file status
     dispatch(
       DirViewActions.updateOpenDirectoryFileStatus(directoryPath)
+    )
+
+    // update modified files count
+    dispatch(
+      DirViewActions.updateModifiedFilesCount(directoryPath)
+    )
+
+    // update current branch
+    dispatch(
+      DirViewActions.updateBranchName(directoryPath)
     )
   }
 
@@ -98,20 +107,13 @@ class DirectoryListContainer extends Component {
       }
     }
   }
-
-  _getModifiedFilesCount() {
-    Git.getStatus(this.props.unicornDirectory).then(fileList => {
-      this.setState({
-        modifiedFilesCount: fileList.length
-      })
-    })
-  }
 }
 
 function mapStateToProps(state) {
   return {
     openDirectoryList: Selectors.getOpenDirectoryList(state),
-    unicornDirectory: Selectors.getUnicornDirectory(state)
+    unicornDirectory: Selectors.getUnicornDirectory(state),
+    modifiedFilesCount: Selectors.getModifiedFilesCount(state)
   }
 }
 

@@ -3,4 +3,11 @@
 .fileStatusListViewContainer {
   border-top: 1px solid @grey-border;
   width: calc(~"100% - 250px");
+  display: flex;
+  flex-direction: column;
+}
+
+.filesListContainer {
+  flex-grow: 1;
+  overflow-y: scroll;
 }

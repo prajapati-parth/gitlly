@@ -16,7 +16,6 @@ class HeaderContainer extends Component {
   constructor() {
     super()
 
-    this.handleBrandButtonClick = this._handleBrandButtonClick.bind(this)
     this.handleAddRepoClick = this._handleAddRepoClick.bind(this)
     this.handleOpenRepoClick = this._handleOpenRepoClick.bind(this)
     this.handleCloneRepoClick = this._handleCloneRepoClick.bind(this)
@@ -25,7 +24,7 @@ class HeaderContainer extends Component {
   render() {
     return (
       <div className='headerContainer'>
-        <BrandButton onBrandClick={this.handleBrandButtonClick} />
+        <BrandButton />
         <div className="newOptionContainer">
           <NewOption icon='Plus' onOptionClick={this.handleAddRepoClick} />
           <NewOption icon='Folder' onOptionClick={this.handleOpenRepoClick} />
@@ -33,10 +32,6 @@ class HeaderContainer extends Component {
         </div>
       </div>
     )
-  }
-
-  _handleBrandButtonClick() {
-    console.log('header button clicked')
   }
 
   _handleAddRepoClick() {

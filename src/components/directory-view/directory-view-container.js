@@ -10,9 +10,6 @@ import './directory-view-container.less'
 import * as DirectoryViewActions from '../../store/actions/directory-view'
 import * as DirectoryViewSelectors from '../../store/reducers/directory-view'
 
-import Git from '../../utils/nodegit'
-import GitHelper from '../../utils/nodegit-helper'
-
 class DirectoryViewContainer extends Component {
   componentWillMount() {
     const {dispatch, unicornDirectory} = this.props
@@ -21,10 +18,15 @@ class DirectoryViewContainer extends Component {
       dispatch(
         DirectoryViewActions.updateOpenDirectoryFileStatus(unicornDirectory)
       )
+
+      dispatch(
+        DirectoryViewActions.updateBranchName(unicornDirectory)
+      )
     }
   }
 
   render() {
+    const {branchName, fileList} = this.props
     return (
       <div className='directoryViewContainer'>
         <div>
@@ -32,7 +34,9 @@ class DirectoryViewContainer extends Component {
         </div>
         <div className='bodyContainer'>
           <Sidebar />
-          <FileStatusListView fileList={this.props.fileList} />
+          <FileStatusListView
+            fileList={fileList}
+            branchName={branchName} />
         </div>
       </div>
     )
@@ -42,7 +46,8 @@ class DirectoryViewContainer extends Component {
 function mapStateToProps(state) {
   return {
     unicornDirectory: DirectoryViewSelectors.getUnicornDirectory(state),
-    fileList: DirectoryViewSelectors.getOpenDirectoryFileStatusList(state)
+    fileList: DirectoryViewSelectors.getOpenDirectoryFileStatusList(state),
+    branchName: DirectoryViewSelectors.getBranchName(state)
   }
 }
 
