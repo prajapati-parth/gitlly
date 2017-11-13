@@ -1,13 +1,16 @@
 var path = require('path');
 var webpack = require('webpack');
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: ['babel-polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, 'src/electron/bundle'),
         filename: 'bundle.min.js',
         libraryTarget: 'umd'
     },
+
+    externals: [nodeExternals()],
 
     module: {
         loaders: [
@@ -24,6 +27,10 @@ module.exports = {
             {
                 test: /(\.less|\.css)$/,
                 use: ['style-loader', 'css-loader', 'less-loader']
+            },
+            { 
+                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
     },

@@ -1,12 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
-var fs = require('fs');
 var nodeExternals = require('webpack-node-externals');
-
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
-    target: 'node',
     devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'src/electron'),
@@ -42,10 +39,6 @@ module.exports = {
             { 
                 test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
                 loader: 'file-loader?name=fonts/[name].[ext]'
-            },
-            {
-                test: /\.node$/,
-                use: 'node-loader'
             }
         ]
     }
