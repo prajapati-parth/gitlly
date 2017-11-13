@@ -88,3 +88,27 @@ export const updateBranchName = directory => {
     })
   }
 }
+
+export const updateDirectoryViewDetails = directory => {
+  return dispatch => {
+    Git.getRepoBranchAndStatus(directory).then(repoData => {
+      let fileList = []
+      
+      for (let i=0, totalFiles = repoData.status.length; i<totalFiles; i++) {
+        let fileListObj = {
+          path: repoData.status[i].path(),
+          gitStatus: GitHelper.getFileStatus(repoData.status[i])
+        }
+
+        fileList.push(fileListObj)
+      }
+
+      dispatch({
+        type: ActionTypes.UPDATE_DIRECTORY_VIEW,
+        fileList,
+        branchName: GitHelper.getBranchShortName(repoData.branchName.toString()),
+        branchList: GitHelper.getBranchListFromReference(repoData.referenceList)
+      })
+    })
+  }
+}

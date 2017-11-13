@@ -49,19 +49,8 @@ class DirectoryListContainer extends Component {
       DirViewActions.updateUnicornDirectory(directoryPath)
     )
 
-    // update open directory file status
     dispatch(
-      DirViewActions.updateOpenDirectoryFileStatus(directoryPath)
-    )
-
-    // update modified files count
-    dispatch(
-      DirViewActions.updateModifiedFilesCount(directoryPath)
-    )
-
-    // update current branch
-    dispatch(
-      DirViewActions.updateBranchName(directoryPath)
+      DirViewActions.updateDirectoryViewDetails(directoryPath)
     )
   }
 
@@ -98,7 +87,7 @@ class DirectoryListContainer extends Component {
 
       if (newUnicornDirectory) {
         dispatch(
-          DirViewActions.updateOpenDirectoryFileStatus(newUnicornDirectory)
+          DirViewActions.updateDirectoryViewDetails(newUnicornDirectory)
         )
 
         dispatch(

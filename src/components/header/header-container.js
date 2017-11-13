@@ -57,7 +57,7 @@ class HeaderContainer extends Component {
     )
 
     dispatch(
-      DirViewActions.updateOpenDirectoryFileStatus(dir)
+      DirViewActions.updateDirectoryViewDetails(dir)
     )
   }
 }

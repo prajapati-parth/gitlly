@@ -28,5 +28,23 @@ export default {
       console.log('getBranch(): repo free')
       repo.free()
     }
+  },
+
+  async getRepoBranchAndStatus(dirPath) {
+    let repo
+    try {
+      repo = await nodegit.Repository.open(dirPath)
+
+      return {
+        branchName: await repo.getCurrentBranch(),
+        status: await repo.getStatus(),
+        referenceList: await repo.getReferenceNames(nodegit.Reference.TYPE.LISTALL)
+      }
+    } catch(e) {
+      console.log('Error occured while getRepoBranchAndStatus(): ' + e)
+    } finally {
+      console.log('getRepoBranchAndStatus(): repo free')
+      repo.free()
+    }
   }
 }

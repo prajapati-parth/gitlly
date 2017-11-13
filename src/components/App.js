@@ -35,9 +35,9 @@ class App extends Component {
       DirViewActions.addToOpenDirectoryList(dirPath)
     )
 
-    // update the file status list
+    // update directory view details
     dispatch(
-      DirViewActions.updateOpenDirectoryFileStatus(dirPath)
+      DirViewActions.updateDirectoryViewDetails(dirPath)
     )
   }
 }

@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
-import {MoreVertical} from 'react-feather'
+import {MoreVertical, Check} from 'react-feather'
 import TetherComponent from 'react-tether'
+import {connect} from 'react-redux'
 
 import './bottom-bar-container.less'
+
+import * as DirectoryViewSelectors from '../../store/reducers/directory-view'
 
 class BottomBarContainer extends Component {
   constructor() {
@@ -29,9 +32,19 @@ class BottomBarContainer extends Component {
         }
         {
           this.state.isMenuOpen && <div className='branchNameOptions'>
-            <p>Developement</p>
-            <p>unit-tests</p>
-            <p>style-guidist</p>
+            {
+              this.props.branchList.map((item, index) => {
+                let selectedClass = item === this.props.branchName ? 'selected' : ''
+                return (
+                  <div className={`branchNameItem ${selectedClass}`} key={index}>
+                    <span>{item}</span>
+                    { 
+                      item === this.props.branchName && <Check className='branchSelected' size={18} />
+                    }
+                  </div>
+                )
+              })
+            }
           </div>    
         }
       </TetherComponent>
@@ -46,4 +59,11 @@ class BottomBarContainer extends Component {
   }
 }
 
-export default BottomBarContainer
+function mapStateToProps(state) {
+  return {
+    branchName: DirectoryViewSelectors.getBranchName(state),
+    branchList: DirectoryViewSelectors.getBranchList(state)
+  }
+}
+
+export default connect(mapStateToProps)(BottomBarContainer)

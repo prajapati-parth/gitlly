@@ -6,7 +6,7 @@ import BottomBarContainer from '../bottom-bar/bottom-bar-container'
 import './file-status-list-view.less'
 
 const FileStatusListView = (props) => {
-  const {fileList, branchName} = props
+  const {fileList} = props
   return (
     <div className='fileStatusListViewContainer'>
       {
@@ -29,7 +29,7 @@ const FileStatusListView = (props) => {
             )
           : <NoChanges />
       }
-      <BottomBarContainer branchName={branchName} />
+      <BottomBarContainer />
     </div>
   )
 }

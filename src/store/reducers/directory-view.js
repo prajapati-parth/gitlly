@@ -6,7 +6,8 @@ const initialState = {
   openDirectoryList: StoreHelper.getValue('openDirList'),
   openDirectoryFileStatus: [],
   modifiedFilesCount: 0,
-  branchName: ''
+  branchName: '',
+  branchList: []
 }
 
 export default function reducer(state=initialState, action={}) {
@@ -36,6 +37,14 @@ export default function reducer(state=initialState, action={}) {
         ...state.DirectoryView,
         branchName: action.branchName
       })
+    case ActionTypes.UPDATE_DIRECTORY_VIEW:
+      return Object.assign({}, state, {
+        ...state.DirectoryView,
+        branchName: action.branchName,
+        openDirectoryFileStatus: action.fileList,
+        modifiedFilesCount: action.fileList.length,
+        branchList: action.branchList
+      })
     default:
       return state
   }
@@ -60,4 +69,8 @@ export const getModifiedFilesCount = state => {
 
 export const getBranchName = state => {
   return state.DirectoryView.branchName ? state.DirectoryView.branchName : initialState.branchName
+}
+
+export const getBranchList = state => {
+  return state.DirectoryView.branchList ? state.DirectoryView.branchList : initialState.branchList
 }

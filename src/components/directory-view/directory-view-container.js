@@ -16,17 +16,13 @@ class DirectoryViewContainer extends Component {
 
     if (unicornDirectory) {
       dispatch(
-        DirectoryViewActions.updateOpenDirectoryFileStatus(unicornDirectory)
-      )
-
-      dispatch(
-        DirectoryViewActions.updateBranchName(unicornDirectory)
+        DirectoryViewActions.updateDirectoryViewDetails(unicornDirectory)
       )
     }
   }
 
   render() {
-    const {branchName, fileList} = this.props
+    const {fileList} = this.props
     return (
       <div className='directoryViewContainer'>
         <div>
@@ -35,8 +31,7 @@ class DirectoryViewContainer extends Component {
         <div className='bodyContainer'>
           <Sidebar />
           <FileStatusListView
-            fileList={fileList}
-            branchName={branchName} />
+            fileList={fileList} />
         </div>
       </div>
     )
@@ -46,8 +41,7 @@ class DirectoryViewContainer extends Component {
 function mapStateToProps(state) {
   return {
     unicornDirectory: DirectoryViewSelectors.getUnicornDirectory(state),
-    fileList: DirectoryViewSelectors.getOpenDirectoryFileStatusList(state),
-    branchName: DirectoryViewSelectors.getBranchName(state)
+    fileList: DirectoryViewSelectors.getOpenDirectoryFileStatusList(state)
   }
 }
 
