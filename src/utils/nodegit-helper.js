@@ -8,20 +8,26 @@ export default {
     if(statusObj.isDeleted()) return 'D'
   },
 
-  getBranchShortName(branchLongName) {
-    return branchLongName.substring(branchLongName.lastIndexOf('/') + 1, branchLongName.length)
+  getBranchShortName(branchLongName, separator) {
+    return branchLongName.split(separator)[1]
   },
 
   getBranchListFromReference(referenceList) {
-    let branchList = []
+    let branchCategory = {
+      local: [],
+      remote: []
+    }
 
+    // iterate over the reference list
     for (let i = 0, referenceListLength = referenceList.length; i < referenceListLength; i++) {
       let referenceName = referenceList[i]
-      if (referenceName.indexOf('/origin') > -1 && referenceName.indexOf('HEAD') == -1) {
-        branchList.push(this.getBranchShortName(referenceName))
+      if (referenceName.indexOf('/heads/') > -1) {
+        branchCategory.local.push(this.getBranchShortName(referenceName, '/heads/'))
+      } else if (referenceName.indexOf('/origin/') > -1 && referenceName.indexOf('HEAD') == -1) {
+        branchCategory.remote.push(this.getBranchShortName(referenceName, '/origin/'))
       }
     }
 
-    return branchList
+    return branchCategory
   }
 }

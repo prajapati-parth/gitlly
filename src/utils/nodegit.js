@@ -23,7 +23,6 @@ export default {
       return await repo.getCurrentBranch()
     } catch (e) {
       console.log('Error occured while getting repo branch: ' + e)
-      console.log(e)
     } finally {
       console.log('getBranch(): repo free')
       repo.free()
@@ -44,6 +43,19 @@ export default {
       console.log('Error occured while getRepoBranchAndStatus(): ' + e)
     } finally {
       console.log('getRepoBranchAndStatus(): repo free')
+      repo.free()
+    }
+  },
+
+  async checkoutBranch(repoPath, branchName) {
+    let repo
+    try {
+      repo = await nodegit.Repository.open(repoPath)
+      return await repo.checkoutBranch(branchName)
+    } catch (e) {
+      console.log('Error occured while branch checkout: ' + e)
+    } finally {
+      console.log('checkoutBranch(): repo free')
       repo.free()
     }
   }

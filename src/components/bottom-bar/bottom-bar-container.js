@@ -3,8 +3,10 @@ import {MoreVertical, Check} from 'react-feather'
 import TetherComponent from 'react-tether'
 import {connect} from 'react-redux'
 
+import BranchNameMenu from './branch-name-menu'
 import './bottom-bar-container.less'
 
+import * as DirectoryViewActions from '../../store/actions/directory-view'
 import * as DirectoryViewSelectors from '../../store/reducers/directory-view'
 
 class BottomBarContainer extends Component {
@@ -16,6 +18,7 @@ class BottomBarContainer extends Component {
     }
 
     this.handleBranchNameClick = this._handleBranchNameClick.bind(this)
+    this.checkoutBranch = this._handleCheckoutBranch.bind(this)
   }
 
   render() {
@@ -24,28 +27,18 @@ class BottomBarContainer extends Component {
       <TetherComponent
         attachment='bottom left'
         targetAttachment='top left'
-        offset='8px 0'>
+        offset='10px -5px'>
         {
           <span className="branchName" onClick={this.handleBranchNameClick} onBlur={() => console.log('blured')}>
             <MoreVertical size={14} />{this.props.branchName}
           </span>
         }
         {
-          this.state.isMenuOpen && <div className='branchNameOptions'>
-            {
-              this.props.branchList.map((item, index) => {
-                let selectedClass = item === this.props.branchName ? 'selected' : ''
-                return (
-                  <div className={`branchNameItem ${selectedClass}`} key={index}>
-                    <span>{item}</span>
-                    { 
-                      item === this.props.branchName && <Check className='branchSelected' size={18} />
-                    }
-                  </div>
-                )
-              })
-            }
-          </div>    
+          this.state.isMenuOpen &&
+            <BranchNameMenu
+              branchList={this.props.branchList}
+              selectedBranch={this.props.branchName}
+              checkoutBranch={this.checkoutBranch} />
         }
       </TetherComponent>
       </div>
@@ -57,12 +50,19 @@ class BottomBarContainer extends Component {
       isMenuOpen: !this.state.isMenuOpen
     })
   }
+
+  _handleCheckoutBranch(newBranchName) {
+    this.props.dispatch(
+      DirectoryViewActions.checkoutBranch(newBranchName, this.props.repoDir)
+    )
+  }
 }
 
 function mapStateToProps(state) {
   return {
     branchName: DirectoryViewSelectors.getBranchName(state),
-    branchList: DirectoryViewSelectors.getBranchList(state)
+    branchList: DirectoryViewSelectors.getBranchList(state),
+    repoDir: DirectoryViewSelectors.getUnicornDirectory(state)
   }
 }
 

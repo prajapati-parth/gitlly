@@ -89,6 +89,19 @@ export const updateBranchName = directory => {
   }
 }
 
+export const checkoutBranch = (branchName, repoDir) => {
+  return dispatch => {
+    Git.checkoutBranch(repoDir, branchName).then(
+      dispatch({
+        type: ActionTypes.UPDATE_BRANCH_NAME,
+        branchName: branchName
+      })
+    ).catch(err => {
+      console.log(err)
+    })
+  }
+}
+
 export const updateDirectoryViewDetails = directory => {
   return dispatch => {
     Git.getRepoBranchAndStatus(directory).then(repoData => {
@@ -102,11 +115,11 @@ export const updateDirectoryViewDetails = directory => {
 
         fileList.push(fileListObj)
       }
-
+      
       dispatch({
         type: ActionTypes.UPDATE_DIRECTORY_VIEW,
         fileList,
-        branchName: GitHelper.getBranchShortName(repoData.branchName.toString()),
+        branchName: GitHelper.getBranchShortName(repoData.branchName.toString(), '/heads/'),
         branchList: GitHelper.getBranchListFromReference(repoData.referenceList)
       })
     })
