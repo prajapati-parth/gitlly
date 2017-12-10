@@ -1,8 +1,8 @@
 import React from 'react'
 import {ThumbsUp} from 'react-feather'
 
-import AppCopy from '../../utils/app-copy-text'
-import './no-changes.less'
+import AppCopy from '../../../utils/app-copy-text'
+import './NoChanges.less'
 
 const NoChanges = () => {
   return (

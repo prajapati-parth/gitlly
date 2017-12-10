@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import FileStatusListView from './file-status-list-view'
-import HeaderContainer from '../header/header-container'
+import FileStatusListView from './FileStatusListView'
+import Header from './Header'
 import Sidebar from '../sidebar/sidebar-container'
 
-import './directory-view-container.less'
+import './DirectoryViewContainer.less'
 
 import * as DirectoryViewActions from '../../store/actions/directory-view'
 import * as DirectoryViewSelectors from '../../store/reducers/directory-view'
@@ -26,7 +26,7 @@ class DirectoryViewContainer extends Component {
     return (
       <div className='directoryViewContainer'>
         <div>
-          <HeaderContainer />
+          <Header />
         </div>
         <div className='bodyContainer'>
           <Sidebar />

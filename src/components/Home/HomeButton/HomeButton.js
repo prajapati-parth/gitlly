@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Icons from 'react-feather'
 
-import './home-button.less'
+import './HomeButton.less'
 
 const HomeButton = (props) => {
   return (

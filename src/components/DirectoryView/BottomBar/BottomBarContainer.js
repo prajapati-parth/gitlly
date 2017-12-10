@@ -3,11 +3,11 @@ import {MoreVertical, Check} from 'react-feather'
 import TetherComponent from 'react-tether'
 import {connect} from 'react-redux'
 
-import BranchNameMenu from './branch-name-menu'
-import './bottom-bar-container.less'
+import BranchNameMenu from './BranchNameMenu'
+import './BottomBarContainer.less'
 
-import * as DirectoryViewActions from '../../store/actions/directory-view'
-import * as DirectoryViewSelectors from '../../store/reducers/directory-view'
+import * as DirectoryViewActions from '../../../store/actions/directory-view'
+import * as DirectoryViewSelectors from '../../../store/reducers/directory-view'
 
 class BottomBarContainer extends Component {
   constructor() {

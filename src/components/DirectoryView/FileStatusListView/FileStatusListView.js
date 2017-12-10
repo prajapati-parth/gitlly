@@ -1,9 +1,9 @@
 import React from 'react'
 import {MoreVertical} from 'react-feather'
 
-import NoChanges from './no-changes'
-import BottomBarContainer from '../bottom-bar/bottom-bar-container'
-import './file-status-list-view.less'
+import NoChanges from '../NoChanges'
+import BottomBarContainer from '../BottomBar'
+import './FileStatusListView.less'
 
 const FileStatusListView = (props) => {
   const {fileList} = props

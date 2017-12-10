@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import HomeContainer from './home/home-container'
-import DirectoryViewContainer from './directory-view/directory-view-container'
+import Home from './Home'
+import DirectoryViewContainer from './DirectoryView'
 
 import * as Selectors from '../store/reducers/directory-view'
 import * as DirViewActions from '../store/actions/directory-view'
@@ -18,7 +18,7 @@ class App extends Component {
     return (
       this.props.openDirList.length
         ? <DirectoryViewContainer unicornDirectory={this.props.unicornDirectory} />
-        : <HomeContainer directorySelected={this.handleDirectorySelect} />
+        : <Home directorySelected={this.handleDirectorySelect} />
     ) 
   }
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { remote } from 'electron'
 
-import HomeButton from './home-button'
-import './home-container.less'
+import HomeButton from './HomeButton'
+import './HomeContainer.less'
 
 import AppCopy from '../../utils/app-copy-text'
 import StoreHelper from '../../utils/store-helper'

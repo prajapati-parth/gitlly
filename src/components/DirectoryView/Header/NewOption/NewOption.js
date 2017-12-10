@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Icons from 'react-feather'
 
-import './new-options.less'
+import './NewOption.less'
 
 const NewOption = props => {
   return (

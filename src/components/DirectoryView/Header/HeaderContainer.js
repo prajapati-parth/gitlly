@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import BrandButton from './brand-button'
-import NewOption from './new-option'
-import './header-container.less'
+import BrandButton from './BrandButton'
+import NewOption from './NewOption'
+import './HeaderContainer.less'
 
-import * as HeaderSelectors from '../../store/reducers/header'
-import * as HeaderActions from '../../store/actions/header'
-import * as DirViewActions from '../../store/actions/directory-view'
+import * as HeaderSelectors from '../../../store/reducers/header'
+import * as HeaderActions from '../../../store/actions/header'
+import * as DirViewActions from '../../../store/actions/directory-view'
 
-import StoreHelper from '../../utils/store-helper'
-import ElectronHelper from '../../utils/electron-helper'
+import StoreHelper from '../../../utils/store-helper'
+import ElectronHelper from '../../../utils/electron-helper'
 
 class HeaderContainer extends Component {
   constructor() {

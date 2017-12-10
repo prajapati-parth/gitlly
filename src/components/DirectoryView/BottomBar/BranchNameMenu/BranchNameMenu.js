@@ -1,7 +1,7 @@
 import React from 'react'
 import {Check, Cloud, Monitor} from 'react-feather'
 
-import './branch-name-menu.less'
+import './BranchNameMenu.less'
 
 const BranchNameMenu = (props) => {
   let { branchList, selectedBranch, checkoutBranch } = props
