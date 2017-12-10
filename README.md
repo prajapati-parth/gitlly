@@ -1,9 +1,7 @@
 # Gitlly
 Minimal git client
 
-<p align='center'>
-  ![Gitlly-in-action](https://dl.dropboxusercontent.com/s/58z06xfqjxd2js9/gitlly-action.png?dl=0)
-</p>
+![Gitlly-in-action](https://dl.dropboxusercontent.com/s/58z06xfqjxd2js9/gitlly-action.png?dl=0)
 
 ## Contributing
 * Clone the source code  
