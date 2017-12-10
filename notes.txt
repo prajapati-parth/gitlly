@@ -1,0 +1,5 @@
+design ideas:
+1) https://dribbble.com/shots/2359374-Mail-client-app
+2) https://dribbble.com/shots/2679552-Web-Message-Interface
+
+WIP: cannot checkout a branch from remote that has a '/' in it. eg. for vscode source code 'ben/19707'
