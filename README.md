@@ -2,7 +2,7 @@
 Minimal git client
 
 <p align='center'>
-  <img alt='gitlly in action' src='/images/gitlly-action.png'>
+  ![Gitlly-in-action](https://dl.dropboxusercontent.com/s/58z06xfqjxd2js9/gitlly-action.png?dl=0)
 </p>
 
 ## Contributing
