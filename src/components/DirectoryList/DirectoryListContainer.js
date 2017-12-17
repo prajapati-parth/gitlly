@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { remote } from 'electron'
 import { connect } from 'react-redux'
 
-import DirectoryList from './directory-list'
+import DirectoryList from './DirectoryList'
 import Git from '../../utils/nodegit'
 
 import * as Selectors from '../../store/reducers/directory-view'

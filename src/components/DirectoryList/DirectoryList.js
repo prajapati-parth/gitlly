@@ -1,7 +1,7 @@
 import React from 'react'
 import {Book} from 'react-feather'
 
-import './directory-list.less'
+import './DirectoryList.less'
 import Utils from '../../utils/utils'
 
 const DirectoryList = (props) => {

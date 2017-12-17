@@ -1,12 +1,12 @@
 import React from 'react'
 
-import DirectoryListContainer from '../directory-list/directory-list-container'
-import './sidebar-container.less'
+import DirectoryList from '../DirectoryList'
+import './SidebarContainer.less'
 
 const SidebarContainer = () => {
   return (
     <div className='sidebarContainer'>
-      <DirectoryListContainer />
+      <DirectoryList />
     </div>
   )
 }

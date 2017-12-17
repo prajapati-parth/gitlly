@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import FileStatusListView from './FileStatusListView'
 import Header from './Header'
-import Sidebar from '../sidebar/sidebar-container'
+import Sidebar from '../Sidebar'
 
 import './DirectoryViewContainer.less'
 
