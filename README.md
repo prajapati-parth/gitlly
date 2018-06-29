@@ -32,3 +32,7 @@ Reference: https://mitchellsholly.com/the-simpler-way-to-rebuild-native-modules-
 
 * Run gitlly
 `npm run gitlly`
+
+## License
+
+[MIT](LICENSE)
