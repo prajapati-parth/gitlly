@@ -28,7 +28,7 @@ HOME=~/.electron-gyp npm install
 Reference: https://mitchellsholly.com/the-simpler-way-to-rebuild-native-modules-in-electron/
 
 * Run dev server
-`npm run dev`
+`npm start`
 
 * Run gitlly
 `npm run gitlly`
