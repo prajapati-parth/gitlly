@@ -1,1 +1,1 @@
-export const selectCounter = state => state.get('counter');
+export const selectSelectedDirectory = state => state.get('selectedDirectory', null);

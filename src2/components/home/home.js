@@ -13,9 +13,10 @@ export default class Home extends React.Component {
   }
 
   addLocalRepo() {
-    // electronHelper.openSelectDirectoryDialog((dirPath) => console.log(dirPath));
-    this.props.add({
-      counter: this.props.counter
+    electronHelper.openSelectDirectoryDialog(directoryPath => {
+      this.props.openLocalDirectory({
+        directoryPath
+      });
     });
   }
 
@@ -49,7 +50,6 @@ export default class Home extends React.Component {
   
     return (
       <div className='home-container'>
-        <h3>{this.props.counter}</h3>
         {
           buttons.map(
             (button, idx) => <HomeButton key={idx} icon={button.icon} label={button.label} onSelect={button.onSelect} />

@@ -2,21 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Home from './home';
-import { selectCounter } from '../../redux/selectors';
-import { add } from '../../redux/actions';
+import { openLocalDirectory } from '../../redux/actions';
 
 class HomeContainer extends React.Component {
   render() {
-    return <Home counter={this.props.counter} add={this.props.add}/>
+    return (
+      <Home openLocalDirectory={this.props.openLocalDirectory} />
+    )
   }
 }
 
-const mapStateToProps = (state) => ({
-  counter: selectCounter(state)
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatch = {
-  add
+  openLocalDirectory
 };
 
 export default connect(mapStateToProps, mapDispatch)(HomeContainer)

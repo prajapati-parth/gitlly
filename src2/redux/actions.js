@@ -1,9 +1,9 @@
 import { createActions } from 'redux-actions';
 
-export const ADD = 'ADD';
+export const OPEN_LOCAL_DIRECTORY = 'OPEN_LOCAL_DIRECTORY';
 
 export const {
-  add
+  openLocalDirectory
 } = createActions(
-  ADD
+  OPEN_LOCAL_DIRECTORY
 );
